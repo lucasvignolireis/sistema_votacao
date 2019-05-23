@@ -1,5 +1,6 @@
-var crypto = require('crypto');
-var saltyString = 'kj9kazsf87';
+const crypto = require('crypto');
+const saltyString = 'kj9kazsf87';
+
 
 Parse.Cloud.define("hello", function(request, response){
  	response.success("Hello world!");
@@ -85,4 +86,47 @@ Parse.Cloud.afterSave("Votes", (request, response) => {
 		});
 	});
 	response.error("opa não conseguiu salvar o voto de " + request.object.get('voterEmail'));
+});
+
+
+Parse.Cloud.define("sendTestEmail", (request, response) => {
+
+	const sgMail = require('@sendgrid/mail');
+	// Import SendGrid module and call with your SendGrid API Key
+	sgMail.setApiKey("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");
+
+	const msg = {
+		to: "lucas.vignoli.reis@gmail.com",
+		replyTo: 'nao-responda@preface.com.br',
+		from: 'nao-responda@preface.com.br',
+		subject: "Teste",
+		text: "Olá Mundo!"
+	};
+
+	sgMail.send(msg).then(() => {
+		response.success("The message was sent!");
+	})
+		.catch(error => {
+			//Log friendly error
+			response.error(error.toString());
+		});
+});
+
+
+Parse.Cloud.define("sendBallots", (request, response) => {
+
+	const sgMail = require('@sendgrid/mail');
+	// Import SendGrid module and call with your SendGrid API Key
+	sgMail.setApiKey("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");
+
+	var query = new Parse.Query('Voters');
+
+	query.find()({useMasterKey:true}).then( function(results){
+		if (typeof result == "undefined" || results.length == 0) {
+			response.error("Não achou nenhum e-mail para enviar");
+		}
+
+		log.info("Encontrou " + results.length + " emails prá enviar!");
+		response.success("Encontrou " + results.length + " emails prá enviar!");
+	});
 });
