@@ -298,3 +298,58 @@ article {
     }
   }
 }
+
+#results {
+  h1 {
+    font-weight: 400;
+  }
+  h3 {
+    margin-top: mod(1/2);
+    margin-bottom: mod(4);
+    font-weight: 300;
+    @extend .big-font;
+  }
+}
+
+.results-compilation {
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05ch;
+    & + p {
+      margin-top: mod(1);
+    }
+  }
+  table {
+    $p: mod(1);
+    width: calc(100% + #{2 * $p});
+    position: relative;
+    left: -$p;
+    th,
+    td {
+      padding: mod(1) $p;
+      text-align: left;
+      @extend .default-font;
+    }
+    tr.sum {
+      background: black;
+      color: white;
+    }
+    th {
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: rgb(233, 236, 235);
+    }
+    & + h2 {
+      margin-top: mod(6);
+    }
+  }
+}
+
+.credits {
+  margin-top: mod(12);
+  margin-bottom: mod(-10);
+  p {
+    font-size: 12px;
+  }
+}

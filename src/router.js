@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Intro from "./views/Intro.vue";
 import TheEnd from "./views/TheEnd.vue";
+import VoteCount from "./views/VoteCount.vue";
 import InvalidHash from "./views/InvalidHash.vue";
 import Question from "./components/Question.vue";
 
@@ -33,6 +34,11 @@ export default new Router({
       path: "/quest/:email/:index",
       name: "question",
       component: Question
+    },
+    {
+      path: "/vote-count",
+      name: "vote-count",
+      component: VoteCount
     }
   ]
 });
