@@ -1,0 +1,16 @@
+{
+  "name": "sistema-votacao-cmd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lucas@preface.com.br",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "commander": "^2.20.0",
+    "parse": "^2.4.0"
+  }
+}
