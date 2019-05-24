@@ -82,6 +82,8 @@ export default {
         let voted = true;
         if (typeof voter.attributes.voted === "undefined") {
           voted = false;
+        } else {
+          voted = voter.attributes.voted;
         }
         auxVoters.push({
           name: voter.attributes.name,
@@ -151,6 +153,10 @@ export default {
     const Voters = Parse.Object.extend("Voters");
     var query1 = new Parse.Query(Votes);
     var query2 = new Parse.Query(Voters);
+
+    query1.limit(500);
+    query2.limit(500);
+
     query1.find().then(result1 => {
       query2.find().then(result2 => {
         next(vm => vm.setData(result1, result2));

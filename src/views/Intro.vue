@@ -7,7 +7,8 @@
       </header>
       <p v-for="paragraph in json.intro.text">{{paragraph}}</p>
       <div class="questions-navigation">
-        <router-link class="question-nav-link next-question" :to="nextUrl">Começar a responder</router-link>
+        <button disabled href="#" class="question-nav-link"> VOTAÇÃO ENCERRADA</button>
+<!--        <router-link class="question-nav-link next-question" :to="nextUrl">Começar a responder</router-link>-->
       </div>
     </article>
   </div>
@@ -26,6 +27,9 @@ export default {
   beforeRouteEnter: function (to, from, next) {
     const Voters = Parse.Object.extend("Voters")
     var query = new Parse.Query(Voters);
+
+    next("/vote-count");
+    return;
 
     query.equalTo("email",atob(to.params.email));
     query.first().then(function(result){

@@ -52,6 +52,10 @@ Parse.Cloud.beforeSave("Votes", (request, response) => {
 	// query.notEqualTo('voted', true);
 	// query.equalTo('email', request.object.get('voterEmail'));
 
+	//CLOSED BALLOTS
+	response.error("VOTAÇÃO ENCERRADA!");
+	return;
+
 	const voterQuery = new Parse.Query('Voters');
 	voterQuery.equalTo('email', request.object.get('voterEmail'));
 	voterQuery.notEqualTo('voted', true);
