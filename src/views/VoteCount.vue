@@ -174,7 +174,7 @@ export default {
       return text;
     },
     prettyHash: function(hash) {
-      return hash.slice(0, 3) + "." + hash.slice(-3);
+      return hash.substr(0, 3) + "." + hash.substr(3,3);
     },
     setData(votes, voters) {
       this.votes = votes;
